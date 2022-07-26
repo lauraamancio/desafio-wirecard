@@ -1,0 +1,1 @@
+{"version":3,"file":"ClientDataMock.js","sourceRoot":"","sources":["ClientDataMock.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAAwD;AAGxD,MAAa,cAAc;IACV,OAAO,CAAC,EAAU;;YAC3B,QAAQ,EAAE,EAAE;gBACR,KAAK,SAAS;oBACV,OAAO,wBAAW,CAAA;gBACtB,KAAK,UAAU;oBACX,OAAO,wBAAW,CAAA;gBACtB;oBACI,OAAO,SAAS,CAAA;aACvB;QACL,CAAC;KAAA;CACJ;AAXD,wCAWC"}

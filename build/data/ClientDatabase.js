@@ -9,22 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const BaseCustomError_1 = require("../error/BaseCustomError");
 const BaseDatabase_1 = require("./BaseDatabase");
-class BuyerDatabase extends BaseDatabase_1.BaseDatabase {
+class ClientDatabase extends BaseDatabase_1.BaseDatabase {
     constructor() {
         super(...arguments);
-        this.TABLE_NAME = "buyers_wirecard";
+        this.TABLE_NAME = "clients_wirecard";
     }
-    addBuyer(input) {
+    addClient(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this.getConnection()
-                    .insert(input)
+                    .insert({ id })
                     .into(this.TABLE_NAME);
             }
             catch (error) {
-                throw new BaseCustomError_1.CustomError(500, error.message || "Internal error.");
+                throw new Error(error.sqlmessage || error.message);
             }
         });
     }
@@ -38,38 +37,10 @@ class BuyerDatabase extends BaseDatabase_1.BaseDatabase {
                 return result[0];
             }
             catch (error) {
-                throw new BaseCustomError_1.CustomError(500, error.message || "Internal error.");
-            }
-        });
-    }
-    getByEmail(email) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const result = yield this.getConnection()
-                    .select("*")
-                    .from(this.TABLE_NAME)
-                    .where({ email });
-                return result[0];
-            }
-            catch (error) {
-                throw new BaseCustomError_1.CustomError(500, error.message || "Internal error.");
-            }
-        });
-    }
-    getByCpf(cpf) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const result = yield this.getConnection()
-                    .select("*")
-                    .from(this.TABLE_NAME)
-                    .where({ cpf });
-                return result[0];
-            }
-            catch (error) {
-                throw new BaseCustomError_1.CustomError(500, error.message || "Internal error.");
+                throw new Error(error.sqlmessage || error.message);
             }
         });
     }
 }
-exports.default = BuyerDatabase;
-//# sourceMappingURL=BuyerDatabase.js.map
+exports.default = ClientDatabase;
+//# sourceMappingURL=ClientDatabase.js.map

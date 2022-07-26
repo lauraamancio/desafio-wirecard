@@ -20,7 +20,7 @@ class BuyersModel {
     getCpf() {
         return this.cpf;
     }
-    static toBuyerModel(buyer) {
+    static todoBuyerModel(buyer) {
         return new BuyersModel(buyer.id, buyer.name, buyer.email, buyer.cpf);
     }
 }

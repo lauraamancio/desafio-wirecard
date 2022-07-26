@@ -12,26 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const BuyersBusiness_1 = __importDefault(require("../business/BuyersBusiness"));
-class BuyerController {
-    constructor(buyerBusiness = new BuyersBusiness_1.default()) {
-        this.buyerBusiness = buyerBusiness;
-        this.addBuyer = (req, res) => __awaiter(this, void 0, void 0, function* () {
+const ClientBusiness_1 = __importDefault(require("../business/ClientBusiness"));
+class ClientConroller {
+    constructor(clientBusiness = new ClientBusiness_1.default()) {
+        this.clientBusiness = clientBusiness;
+        this.addClient = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const { name, email, cpf } = req.body;
-                const input = {
-                    name,
-                    email,
-                    cpf
-                };
-                yield this.buyerBusiness.addBuyer(input);
-                res.status(201).send({ message: "Buyer registered" });
+                yield this.clientBusiness.addClient();
+                res.status(201).send({ message: "Client created with success" });
             }
             catch (error) {
-                res.status(error.statusCode || 400).send({ message: error.message });
+                res.status(400).send(error.sqlmessage || error.message);
             }
         });
     }
 }
-exports.default = BuyerController;
-//# sourceMappingURL=BuyerController.js.map
+exports.default = ClientConroller;
+//# sourceMappingURL=ClientConroller.js.map

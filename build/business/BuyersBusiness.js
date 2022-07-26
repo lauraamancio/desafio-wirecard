@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const BuyerDatabase_1 = __importDefault(require("../data/BuyerDatabase"));
+const BaseCustomError_1 = require("../error/BaseCustomError");
 const BuyersModel_1 = require("../models/BuyersModel");
 const IdGenerator_1 = require("./../services/IdGenerator");
 class BuyersBusiness {
@@ -23,14 +24,37 @@ class BuyersBusiness {
             try {
                 const { name, email, cpf } = input;
                 if (!name || !email || !cpf) {
-                    throw new Error("Preencha todos os campos corretamente");
+                    throw new BaseCustomError_1.CustomError(422, "Fill in all the fields");
+                }
+                if (!email.includes("@")) {
+                    throw new BaseCustomError_1.CustomError(400, "Invalid email format");
+                }
+                if (cpf.toString().length !== 11) {
+                    throw new BaseCustomError_1.CustomError(400, "Invalid format of CPF");
+                }
+                const registeredEmail = yield this.buyerData.getByEmail(email);
+                const registeredCpf = yield this.buyerData.getByCpf(cpf);
+                if (registeredCpf || registeredEmail) {
+                    throw new BaseCustomError_1.CustomError(409, "Email or CPF already registered");
                 }
                 const id = this.idGenerator.generate();
                 const newBuyer = new BuyersModel_1.BuyersModel(id, name, email, cpf);
                 yield this.buyerData.addBuyer(newBuyer);
             }
             catch (error) {
-                throw new Error(error.message);
+                throw new BaseCustomError_1.CustomError(400, error.message);
+            }
+        });
+        this.getById = (id) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield this.buyerData.getByID(id);
+                if (!result) {
+                    throw new Error("Buyer not found");
+                }
+                return result;
+            }
+            catch (error) {
+                throw new BaseCustomError_1.CustomError(400, error.message);
             }
         });
     }

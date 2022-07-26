@@ -1,0 +1,1 @@
+{"version":3,"file":"CardDatabaseMock.js","sourceRoot":"","sources":["CardDatabaseMock.ts"],"names":[],"mappings":";;;;;;;;;;;;AACA,yCAAiD;AAEjD,MAAa,gBAAgB;IACZ,OAAO,CAAC,KAAgB;;QAErC,CAAC;KAAA;IAEY,SAAS,CAAC,EAAU;;YAC7B,QAAQ,EAAE,EAAE;gBACR,KAAK,UAAU;oBACX,OAAO,mBAAQ,CAAA;gBACnB,KAAK,UAAU;oBACX,OAAO,oBAAS,CAAA;gBACpB;oBACI,OAAO,SAAS,CAAA;aACvB;QACL,CAAC;KAAA;CACJ;AAfD,4CAeC"}

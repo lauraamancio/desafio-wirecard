@@ -11,12 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const BaseCustomError_1 = require("../error/BaseCustomError");
 const BaseDatabase_1 = require("./BaseDatabase");
-class BuyerDatabase extends BaseDatabase_1.BaseDatabase {
+class PaymentDatabase extends BaseDatabase_1.BaseDatabase {
     constructor() {
         super(...arguments);
-        this.TABLE_NAME = "buyers_wirecard";
+        this.TABLE_NAME = "payment_wirecard";
     }
-    addBuyer(input) {
+    generatePayment(input) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this.getConnection()
@@ -28,7 +28,7 @@ class BuyerDatabase extends BaseDatabase_1.BaseDatabase {
             }
         });
     }
-    getByID(id) {
+    getPaymentById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield this.getConnection()
@@ -42,34 +42,6 @@ class BuyerDatabase extends BaseDatabase_1.BaseDatabase {
             }
         });
     }
-    getByEmail(email) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const result = yield this.getConnection()
-                    .select("*")
-                    .from(this.TABLE_NAME)
-                    .where({ email });
-                return result[0];
-            }
-            catch (error) {
-                throw new BaseCustomError_1.CustomError(500, error.message || "Internal error.");
-            }
-        });
-    }
-    getByCpf(cpf) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const result = yield this.getConnection()
-                    .select("*")
-                    .from(this.TABLE_NAME)
-                    .where({ cpf });
-                return result[0];
-            }
-            catch (error) {
-                throw new BaseCustomError_1.CustomError(500, error.message || "Internal error.");
-            }
-        });
-    }
 }
-exports.default = BuyerDatabase;
-//# sourceMappingURL=BuyerDatabase.js.map
+exports.default = PaymentDatabase;
+//# sourceMappingURL=PaymentDatabase.js.map

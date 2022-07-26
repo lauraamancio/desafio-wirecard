@@ -12,26 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const BuyersBusiness_1 = __importDefault(require("../business/BuyersBusiness"));
-class BuyerController {
-    constructor(buyerBusiness = new BuyersBusiness_1.default()) {
-        this.buyerBusiness = buyerBusiness;
-        this.addBuyer = (req, res) => __awaiter(this, void 0, void 0, function* () {
+const ClientDatabase_1 = __importDefault(require("../data/ClientDatabase"));
+const IdGenerator_1 = require("../services/IdGenerator");
+class ClientBusiness {
+    constructor(idGenerator = new IdGenerator_1.IdGenerator(), clientDatabase = new ClientDatabase_1.default()) {
+        this.idGenerator = idGenerator;
+        this.clientDatabase = clientDatabase;
+        this.addClient = () => __awaiter(this, void 0, void 0, function* () {
             try {
-                const { name, email, cpf } = req.body;
-                const input = {
-                    name,
-                    email,
-                    cpf
-                };
-                yield this.buyerBusiness.addBuyer(input);
-                res.status(201).send({ message: "Buyer registered" });
+                const id = this.idGenerator.generate();
+                yield this.clientDatabase.addClient(id);
             }
             catch (error) {
-                res.status(error.statusCode || 400).send({ message: error.message });
+                throw new Error(error.message);
             }
         });
     }
 }
-exports.default = BuyerController;
-//# sourceMappingURL=BuyerController.js.map
+exports.default = ClientBusiness;
+//# sourceMappingURL=ClientBusiness.js.map
