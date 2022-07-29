@@ -38,4 +38,4 @@ Caso o cartão esteja com data expirada, o pagamento também é salvo no Banco d
 - UUID;
 
 ## :woman_technologist: Desenvolvido por:
-[<img src="https://avatars.githubusercontent.com/u/98964160?v=4" width=115><br><sub>Laura Neves Amancio</sub>]([https://github.com/lauraamancio](https://www.linkedin.com/in/laura-amancio-9b3b8b168/)
+[<img src="https://avatars.githubusercontent.com/u/98964160?v=4" width=115><br><sub>Laura Neves Amancio</sub>](https://www.linkedin.com/in/laura-amancio-9b3b8b168/)
