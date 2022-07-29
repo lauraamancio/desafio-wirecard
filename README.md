@@ -2,7 +2,7 @@
 
 <br>
 
-Desafio Backend proposto pela WireCard. Nele tive que desenvolver uma API que seria usada numa negociação entre Client (vendedor) e Buyer (comprador), gerando e processando o pagamento da negociação. Os pagametos poderiam ser Boleto ou Cartão de Crédito. Na opção boleto, retornamos um número aleatório de pagamento, já no cartão de crédito, se o pagamento tinha sido aprovado ou não. Deveria ser retornado em um outro endpoint, o status do pagamento e suas informações. Por fim, era necessário a realização de testes unitários nos endpoints desenvolvidos.
+Desafio Backend proposto pela WireCard. Nele tive que desenvolver uma API que seria usada numa negociação entre Client (vendedor) e Buyer (comprador), gerando e processando o pagamento da negociação. Os pagametos poderiam ser Boleto ou Cartão de Crédito. Na opção boleto, retornamos um número aleatório de pagamento, já no cartão de crédito, se o pagamento foi aprovado ou não. Deveria ser retornado em um outro endpoint, o status do pagamento e suas informações. Por fim, era necessário a realização de testes unitários nos endpoints desenvolvidos.
 
 Você pode encontrar os detalhes do desafio [clicando aqui!](https://github.com/wirecardBrasil/challenge/tree/master/backend)
 
